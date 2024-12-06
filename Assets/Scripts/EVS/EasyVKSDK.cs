@@ -14,10 +14,18 @@ public class EasyVKSDK : MonoBehaviour
 {
     private VKPlayWeb api;
 
+    public static EasyVKSDK Singleton { get; private set; }
+
     private void Start()
     {
+        if (Singleton == null)
+        {
+            Singleton = this;
+            DontDestroyOnLoad(this);
+        }
+
         api = VKPlayWeb.instance;
-        int gmrId = 1; // <<< заменить на свой!!!! См. Кабинет -> Системные свойства -> ID Игры (GMRID)
+        int gmrId = 52812891; // <<< заменить на свой!!!! См. Кабинет -> Системные свойства -> ID Игры (GMRID)
 
         // important callbacks
         api.apiInitCallback += OnApiInit;
